@@ -8,8 +8,11 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@nextindex/next-scss": "^1.2.1",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "materialize-css": "^1.0.0",
+    "vue": "^3.3.4",
+    "vue-parallaxy": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -18,7 +21,9 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.3.1"
   },
   "eslintConfig": {
     "root": true,
