@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <ParallaxWallpaper />
     <div style="background-color: #fff; height: 100vh;"></div>
     <div style="position: relative;">
       <parallax :fixed="true" :section-height="150">
@@ -13,11 +14,13 @@
 
 <script>
 import Parallax from './components/ParallaxSet.vue'
+import ParallaxWallpaper from './components/ParallaxWallpaper.vue'
 
 export default {
   name: 'app',
   components: {
-    Parallax
+    Parallax,
+    ParallaxWallpaper
   }
 }
 </script>
