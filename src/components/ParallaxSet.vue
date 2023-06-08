@@ -55,16 +55,17 @@ export default {
     }
   },
 
-  data () {
+  data() {
     return {
       el: null,
-      mediaQuery: null
+      mediaQuery: null,
+      isVisible: false
     }
   },
 
-  mounted () {
+  mounted() {
     if (this.parallax && !this.fixed) {
-      this.el = this.$refs.parallax
+      this.el = this.$refs.parallax;
       window.requestAnimationFrame = window.requestAnimationFrame ||
           window.mozRequestAnimationFrame ||
           window.webkitRequestAnimationFrame ||
@@ -72,64 +73,72 @@ export default {
           function (f) {
             setTimeout(f, 1000 / 60)
           }
-      this.init()
+      this.init();
     }
   },
 
   methods: {
-    animateElement () {
-      const parentHeight = this.$refs.block.offsetHeight
-      const parallaxHeight = this.$refs.parallax.offsetHeight
-      const availableOffset = parallaxHeight - parentHeight
-      let animationValue = (window.pageYOffset * this.speedFactor)
+    animateElement() {
+      const parentHeight = this.$refs.block.offsetHeight;
+      const parallaxHeight = this.$refs.parallax.offsetHeight;
+      const availableOffset = parallaxHeight - parentHeight;
+      let animationValue = window.pageYOffset * this.speedFactor;
 
       if (animationValue <= availableOffset && animationValue >= 0) {
-        this.el.style.transform = `translate3d(0, ${animationValue * this.directionValue}px ,0)`
+        this.el.style.transform = `translate3d(0, ${animationValue * this.directionValue}px ,0)`;
+
+        // Check if the element is visible on the screen
+        const elementRect = this.$el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const isVisible = elementRect.top <= windowHeight && elementRect.bottom >= 0;
+
+        // Emit the scroll-visible event with the visibility status
+        this.$emit('scroll-visible', isVisible);
       }
     },
 
-    scrollHandler () {
+    scrollHandler() {
       window.requestAnimationFrame(() => {
         if (this.isInView(this.$refs.parallax)) {
-          this.animateElement()
+          this.animateElement();
         }
-      })
+      });
     },
 
-    isInView (el) {
-      let rect = el.getBoundingClientRect()
+    isInView(refName) {
+      const element = this.$refs[refName];
+      if (!element) return false;
 
-      return (
-          rect.bottom >= 0 &&
-          rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-      )
+      const rect = element.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      return rect.top <= windowHeight && rect.bottom >= 0;
     },
 
-    setupListener () {
+    setupListener() {
       if (this.mediaQuery.matches) {
-        window.addEventListener('scroll', this.scrollHandler, false)
+        window.addEventListener('scroll', this.scrollHandler, false);
       } else {
-        window.removeEventListener('scroll', this.scrollHandler, false)
+        window.removeEventListener('scroll', this.scrollHandler, false);
       }
     },
 
-    init () {
-      this.mediaQuery = window.matchMedia(this.breakpoint)
+    init() {
+      this.mediaQuery = window.matchMedia(this.breakpoint);
 
       if (this.mediaQuery) {
-        this.mediaQuery.addListener(this.setupListener)
-        this.setupListener()
+        this.mediaQuery.addListener(this.setupListener);
+        this.setupListener();
       }
     }
   },
 
-  beforeUnmount () {
-    window.removeEventListener('scroll', this.scrollHandler, false)
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.scrollHandler, false);
   },
 
   computed: {
-    directionValue () {
-      return this.direction === 'down' ? +1 : -1
+    directionValue() {
+      return this.direction === 'down' ? +1 : -1;
     }
   }
 }
