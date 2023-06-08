@@ -3,7 +3,7 @@
     <div class="container">
       <div class="content">
         <div class="profile-image">
-          <img src="@/assets/profile-image.png" alt="Profile Image">
+          <img src="../../assets/profile-image.png" alt="Profile Image">
         </div>
         <div class="text">
           <h3>
