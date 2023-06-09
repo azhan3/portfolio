@@ -15,12 +15,10 @@ export default {
   },
 
   mounted() {
-    // Attach the scroll event listener
     window.addEventListener('scroll', this.handleScroll);
   },
 
   beforeUnmount() {
-    // Remove the scroll event listener to prevent memory leaks
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
@@ -30,15 +28,15 @@ export default {
     handleScroll() {
       const scrollPosition = window.pageYOffset;
       if (scrollPosition > 500 && scrollPosition <= 1200) {
-        if (!this.show) { // Only toggle if it's not already toggled
+        if (!this.show) {
           this.toggle();
         }
       } else if (scrollPosition > 1200) {
-        if (this.show) { // Only toggle if it's already toggled
+        if (this.show) {
           this.toggle();
         }
       } else if (scrollPosition < 500) {
-        if (this.show) { // Only toggle if it's already toggled
+        if (this.show) {
           this.toggle();
         }
       }
@@ -48,16 +46,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h2 {
   font-size: calc(4vh + 6vw);
   color: white;
-  position: absolute; /* Position the title absolutely within its containing element */
-  margin-top: 45vh;
-  left: 50%; /* Adjust the left position as needed */
-  transform: translate(-50%, -50%); /* Center the title vertically and horizontally */
-  z-index: 20; /* Ensure the title appears above the parallax wallpaper */
-
+  position: absolute;
+  margin-top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-transform: uppercase;
+  font-weight: 3000;
+  letter-spacing: 3px;
 }
 
 

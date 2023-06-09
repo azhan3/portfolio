@@ -1,16 +1,16 @@
 <template>
   <div className="parallax-container" ref="container">
     <div className="parallax-layer layer1" ref="layer1">
-      <img src="@/assets/parallax_layers/Backdrop.png" alt="Image 1">
+      <img src="../../assets/parallax_layers/Backdrop.png" alt="Image 1">
     </div>
     <div className="parallax-layer layer2" ref="layer2">
-      <img src="@/assets/parallax_layers/Layer3.png" alt="Image 2">
+      <img src="../../assets/parallax_layers/Layer3.png" alt="Image 2">
     </div>
     <div className="parallax-layer layer3" ref="layer3">
-      <img src="@/assets/parallax_layers/Layer2.png" alt="Image 3">
+      <img src="../../assets/parallax_layers/Layer2.png" alt="Image 3">
     </div>
     <div className="parallax-layer layer4" ref="layer4">
-      <img src="@/assets/parallax_layers/Layer1.png" alt="Image 4">
+      <img src="../../assets/parallax_layers/Layer1.png" alt="Image 4">
     </div>
 
     <div className="title-overlay" ref="title">
@@ -82,6 +82,7 @@ export default {
 
 .layer4 {
   top: 40vh;
+  z-index: 5;
 }
 
 .title-overlay {
@@ -89,7 +90,7 @@ export default {
   top: 25%;
   left: 50%;
   transform: translate(-50%, 0%);
-  z-index: 2;
+  z-index: 0;
   text-align: center;
   width: 100%;
 }
@@ -97,6 +98,8 @@ export default {
 .title {
   color: #003551;
   font-size: calc(7vh + 5vw);
-  font-family: Cantarell;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 5px;
 }
 </style>

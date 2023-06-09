@@ -1,26 +1,6 @@
 <template>
   <div>
     <!-- Parallax section -->
-    <div class="parallax-container">
-      <div class="parallax">
-        <!-- Parallax content goes here -->
-        <div class="parallax-content">
-          <h1>Welcome to My Portfolio</h1>
-          <p>Check out my awesome projects!</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- About Me section -->
-    <div class="about-me">
-      <section class="section">
-        <div class="container">
-          <h2>About Me</h2>
-          <p>Write a brief introduction about yourself and your skills. Highlight your experience, interests, and any relevant information that showcases your expertise and passion for your field.</p>
-        </div>
-      </section>
-    </div>
-
     <!-- Projects section -->
     <div class="projects">
       <section class="section">

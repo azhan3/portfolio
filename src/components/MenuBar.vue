@@ -26,21 +26,25 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    navigate(page) {
-      // Handle navigation to the selected page
-      console.log(`Navigating to ${page}`);
+    navigate(section) {
+      const sectionRef = `${section}Section`;
+      console.log(sectionRef);
+      console.log(this.$parent.$refs[sectionRef].$el.offsetTop);
+      if (this.$parent.$refs[sectionRef]) {
+        this.$parent.$refs[sectionRef].$el.scrollIntoView({ behavior: 'smooth' });
+      }
     },
     handleScroll() {
       const scrollPosition = window.pageYOffset;
-      console.log(scrollPosition);
       this.isSticky = scrollPosition > this.$el.offsetTop;
+
       this.isSticky = scrollPosition > this.OriPos;
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 .menu-bar {
   background-color: #001A2B;
   height: 10vh;
